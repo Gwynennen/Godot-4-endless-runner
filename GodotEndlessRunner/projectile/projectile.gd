@@ -2,8 +2,7 @@
 extends CharacterBody2D
 
 @export var visibilityNotifier : VisibleOnScreenNotifier2D
-@export var sprite : Sprite2D
-var speed := 200
+var speed := -150
 
 func _ready() -> void:
 	velocity = Vector2.DOWN * speed
