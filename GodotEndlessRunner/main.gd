@@ -1,11 +1,11 @@
 extends Node2D
 
 @export var UI : CanvasLayer
+@export var FolderAttacks : Node
+@export var FolderObstacles : Node
 var Player : CharacterBody2D
-var Obstacles : Array[CharacterBody2D]
 var obstacleGenerator := Timer.new()
 var generateInterval := 1.5
-var Projectiles : Array[CharacterBody2D]
 
 func _ready() -> void:
 	Globals.playerCollided.connect(func() -> void: UI.show_label())
@@ -18,16 +18,16 @@ func _ready() -> void:
 	start_obstacles()
 
 func spawn_player_attack() -> void:
-	Projectiles.append(Preloads.PROJECTILE.instantiate())
-	Projectiles[-1].position = Player.position
-	add_child(Projectiles[-1])
+	var projectile := Preloads.PROJECTILE.instantiate()
+	projectile.position = Player.position
+	FolderAttacks.add_child(projectile)
 
 func start_obstacles() -> void:
 	obstacleGenerator.wait_time = generateInterval
 	obstacleGenerator.timeout.connect(func() -> void:
-		Obstacles.append(Preloads.OBSTACLE.instantiate())
-		Obstacles[-1].position = Vector2(get_viewport_rect().size.x*randf_range(0,1), -Obstacles[-1].sprite.get_rect().size.y/2)
-		add_child(Obstacles[-1])
+		var obstacles := Preloads.OBSTACLE.instantiate()
+		obstacles.position = Vector2(get_viewport_rect().size.x*randf_range(0,1), -obstacles.sprite.get_rect().size.y/2)
+		FolderObstacles.add_child(obstacles)
 	)
 	add_child(obstacleGenerator)
 	obstacleGenerator.start()

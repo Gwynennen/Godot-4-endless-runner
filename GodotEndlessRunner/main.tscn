@@ -3,9 +3,11 @@
 [ext_resource type="Script" path="res://main.gd" id="1_7xcal"]
 [ext_resource type="Script" path="res://ui/ui.gd" id="2_bkpkt"]
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("UI")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("UI", "FolderAttacks", "FolderObstacles")]
 script = ExtResource("1_7xcal")
 UI = NodePath("UI")
+FolderAttacks = NodePath("Attacks")
+FolderObstacles = NodePath("Obstacles")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -26,3 +28,7 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Player collided"
+
+[node name="Attacks" type="Node" parent="."]
+
+[node name="Obstacles" type="Node" parent="."]

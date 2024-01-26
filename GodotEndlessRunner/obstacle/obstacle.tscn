@@ -6,20 +6,30 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6wka"]
 size = Vector2(64, 128)
 
-[node name="Obstacle" type="CharacterBody2D" node_paths=PackedStringArray("visibilityNotifier", "sprite")]
+[node name="Obstacle" type="CharacterBody2D" node_paths=PackedStringArray("visibilityNotifier", "sprite", "damageIndicator")]
 collision_layer = 2
 script = ExtResource("1_466e6")
 visibilityNotifier = NodePath("VisibleOnScreenNotifier2D")
 sprite = NodePath("Sprite2D")
+damageIndicator = NodePath("DamageIndicator")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.5, 1)
 texture = ExtResource("1_2irj0")
 
+[node name="DamageIndicator" type="Line2D" parent="."]
+visible = false
+position = Vector2(4.93617, 9.11112)
+points = PackedVector2Array(-24, -55, -15, -24, 12, -11, -8, 10, 13, 43)
+width = 3.0
+default_color = Color(0.458824, 0.458824, 0.458824, 1)
+
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
 position = Vector2(0, -2.86102e-06)
 scale = Vector2(3.2, 6.4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_x6wka")
