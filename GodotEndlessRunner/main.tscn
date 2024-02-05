@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ct44o3pnjcty6"]
+[gd_scene load_steps=5 format=3 uid="uid://ct44o3pnjcty6"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7xcal"]
 [ext_resource type="Script" path="res://ui/ui.gd" id="2_bkpkt"]
+[ext_resource type="Texture2D" uid="uid://t0hr3jon63fy" path="res://background/background.jpg" id="3_nx2wy"]
+[ext_resource type="Script" path="res://background/background.gd" id="3_t6bji"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("UI", "FolderAttacks", "FolderObstacles")]
 script = ExtResource("1_7xcal")
@@ -32,3 +34,14 @@ text = "Player collided"
 [node name="Attacks" type="Node" parent="."]
 
 [node name="Obstacles" type="Node" parent="."]
+
+[node name="Background" type="ParallaxBackground" parent="." node_paths=PackedStringArray("layer1")]
+script = ExtResource("3_t6bji")
+layer1 = NodePath("ParallaxLayer")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(0, 720)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
+texture = ExtResource("3_nx2wy")
+centered = false

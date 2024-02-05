@@ -5,7 +5,7 @@ extends Node2D
 @export var FolderObstacles : Node
 var Player : CharacterBody2D
 var obstacleGenerator := Timer.new()
-var generateInterval := 1.5
+var obstacleGenerateInterval := 1.5
 
 func _ready() -> void:
 	Globals.playerCollided.connect(func() -> void: UI.show_label())
@@ -23,7 +23,7 @@ func spawn_player_attack() -> void:
 	FolderAttacks.add_child(projectile)
 
 func start_obstacles() -> void:
-	obstacleGenerator.wait_time = generateInterval
+	obstacleGenerator.wait_time = obstacleGenerateInterval
 	obstacleGenerator.timeout.connect(func() -> void:
 		var obstacles := Preloads.OBSTACLE.instantiate()
 		obstacles.position = Vector2(get_viewport_rect().size.x*randf_range(0,1), -obstacles.sprite.get_rect().size.y/2)
